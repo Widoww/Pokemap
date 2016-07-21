@@ -531,10 +531,7 @@
 	        print("(%s) %s is visible at (%s, %s) for %s seconds (%sm %s from you)" % (poke.pokemon.PokemonId, pokemons[poke.pokemon.PokemonId - 1]['Name'], poke.Latitude, poke.Longitude, poke.TimeTillHiddenMs / 1000, int(origin.get_distance(other).radians * 6366468.241830914), direction))
 	        
 	    print('')
-            walk = getNeighbors()
-            next = LatLng.from_point(Cell(CellId(walk[2])).get_center())
-            break
-            set_location_coords(next.lat().degrees, next.lng().degrees, 0	
+	
 
 	    return nearby_pokes
 	

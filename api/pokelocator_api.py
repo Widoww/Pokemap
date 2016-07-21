@@ -401,9 +401,7 @@ def main(location=None, direction=None):
         print('[-] Ooops...')
 
     nearby_pokes = []
-    steps = os.environ.get('STEPS', 1)  // also makes it configurable in Heroku
 
-    for step in range(steps):  // this used to be while true
     original_lat = FLOAT_LAT
     original_long = FLOAT_LONG
     

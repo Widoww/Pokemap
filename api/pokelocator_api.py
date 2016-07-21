@@ -401,7 +401,9 @@ def main(location=None, direction=None):
         print('[-] Ooops...')
 
     nearby_pokes = []
+    steps = os.environ.get('STEPS', 1)  // also makes it configurable in Heroku
 
+    for step in range(steps):  // this used to be while true
     original_lat = FLOAT_LAT
     original_long = FLOAT_LONG
     
@@ -468,11 +470,15 @@ def main(location=None, direction=None):
             "time_left": poke.TimeTillHiddenMs / 1000,
             "distance": int(origin.get_distance(other).radians * 6366468.241830914),
             "direction": direction
+            "step": step+1
         })
 
         print("(%s) %s is visible at (%s, %s) for %s seconds (%sm %s from you)" % (poke.pokemon.PokemonId, pokemons[poke.pokemon.PokemonId - 1]['Name'], poke.Latitude, poke.Longitude, poke.TimeTillHiddenMs / 1000, int(origin.get_distance(other).radians * 6366468.241830914), direction))
         
     print('')
+        walk = getNeighbors()  
+        next = LatLng.from_point(Cell(CellId(walk[2])).get_center())
+        set_location_coords(next.lat().degrees, next.lng().degrees, 0)
 
     return nearby_pokes
 
